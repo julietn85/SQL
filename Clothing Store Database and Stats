@@ -1,0 +1,19 @@
+CREATE TABLE store (id integer primary key, name TEXT, color TEXT, quantity integer, price integer);
+
+INSERT INTO store VALUES
+(1, 'jeans', 'blue', 12,45),
+(2, 'sweaters', 'red', 20,50),
+(3, 'blouses', 'pink', 40,15),
+(4, 'hats', 'black', 100,30),
+(5, 'gloves', 'gray', 25,10),
+(6, 'scarves', 'green', 75,10),
+(7, 'boots', 'yellow', 10,35),
+(8, 'socks', 'orange', 100,5),
+(9, 'underwear', 'mixed', 150,2),
+(10, 'jackets', 'brown', 15,50);
+
+SELECT* FROM store
+WHERE price >=50;
+
+SELECT SUM(quantity) FROM store
+ORDER BY quantity
