@@ -1,0 +1,4 @@
+SELECT *
+FROM BIT_DB.customers
+WHERE length(order_id) = 6
+AND order_id <> 'Order ID'
