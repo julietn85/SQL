@@ -1,0 +1,50 @@
+What is the average danceability by artist and track?
+SELECT AVG(danceability), artist_name,track_name
+FROM BIT_DB.Spotifydata
+Group BY artist_name;
+
+Who are the top 10 artists based on popularity? 
+SELECT artist_name, popularity
+FROM BIT_DB.Spotifydata
+ORDER BY popularity
+LIMIT 10;
+
+What artist released the longest song?
+SELECT artist_name, track_name, duration_ms
+FROM BIT_DB.Spotifydata
+ORDER BY duration_ms DESC
+LIMIT 1
+
+What's the average danceability for the 10 most popular songs?
+SELECT popularity
+FROM BIT_DB.Spotifydata
+ORDER BY popularity asc
+LIMIT 10
+
+SELECT AVG(danceability)
+FROM BIT_DB.Spotifydata 
+WHERE popularity <= 82;
+
+Select the following artists: Bad Bunny, Doja Cat, Farruko, Justin Bieber, The Weekend, and Dua Lipa. Order by their names alphabetically.
+SELECT artist_name, track_name
+FROM BIT_DB.Spotifydata
+WHERE artist_name IN ('Bad Bunny', 'Doja Cat', 'Farruko', 'Justin Bieber', 'The Weekend', 'Dua Lipa')
+ORDER BY artist_name ASC;
+
+SELECT track_name, artist_name
+FROM BIT_DB.Spotifydata
+WHERE track_name LIKE '%a%'
+GROUP BY artist_name;
+
+SELECT artist_name, track_name,
+CASE
+WHEN artist_name = 'Justin Bieber' THEN 'Pop Music'
+WHEN artist_name = 'Farruko' Then 'Latin Trap Reggeaton'
+When artist_name = 'Doja Cat' THEN 'Hip Hop'
+ELSE 'Top 40s'
+END as MusicCatogery
+FROM BIT_DB.Spotifydata;
+
+SELECT MAX(tempo)
+FROM BIT_DB.Spotifydata
+WHERE tempo < 100;
