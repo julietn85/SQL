@@ -1,0 +1,69 @@
+CREATE TABLE marvels (ID INTEGER PRIMARY KEY,
+    name TEXT,
+    alias TEXT,
+    popularity INTEGER,
+    gender TEXT, 
+    hometown TEXT,
+    team TEXT,
+    intelligence INTEGER,
+    strength INTEGER,
+    durability INTEGER,
+    fighting_Skills INTEGER);
+    
+INSERT INTO marvels VALUES
+(1, 'Captain America' , 'Steve Rogers' , 10, 'Male' , 'NJ' , 'Avengers' , 85, 100, 100, 100),
+(2, 'Iron Man' , 'Tony Starks' , 10, 'Male' , 'NYC' , 'Avengers' , 150, 100, 90, 100),
+(3, 'Hulk' , 'Bruce Banner' , 5, 'Male' , 'OH' , 'Avengers' , 200, 100, 100, 100),
+(4, 'Black Widow' , 'Natasha Romannova' , 8, 'Female' , 'Russia' , 'SHIELD' , 100, 80, 70, 90),
+(5, 'Spider Man' , 'Peter Parker' , 10, 'Male' , 'NYC' , 'Solo' , 150, 100, 100, 100),
+(6, 'Thor' , 'Odeson' , 10, 'Male' , 'Asgard' , 'Avengers' , 80, 100, 100, 100),
+(7, 'Doctor Strange' , 'Stephen Strange' , 6, 'Male' , 'NYC' , 'Solo' , 100, 80, 80, 80),
+(8, 'Black Panther' , 'TChalla' , 10, 'Male' , 'Wakanda' , 'Solo' , 9, 100, 100, 100),
+(9, 'Captain Marvel', 'Carol Danvers' , 5, 'Female' , 'MA' , 'Solo' , 90, 100, 100, 100),
+(10, 'Jean Gray' , 'Phoenix' , 7, 'Female' , 'NY' , 'X-Men' , 100, 70, 80, 90);
+
+
+SELECT *
+FROM marvels;
+
+SELECT AVG(durability), name, fighting_Skills
+FROM marvels
+GROUP BY name
+ORDER BY durability DESC;
+
+SELECT MIN(strength) AS 'Core Strength', name, popularity
+FROM marvels
+Group by name
+Order by strength ASC;
+
+SELECT name, alias, team,
+CASE
+WHEN alias = 'Tony Starks' THEN 'Philantropist Playboy'
+WHEN alias = 'Peter Parker' THEN 'Freindly Neighborhood Spiderman'
+WHEN alias = 'TChalla' THEN 'Prince of Wakanda'
+WHEN alias = 'Steve Rogers' THEN 'Hottie'
+WHEN alias = 'Odeson' THEN 'Demigod'
+ELSE 'Mighty Hero'
+END AS TitleCategory
+FROM marvels;
+
+SELECT name, popularity
+FROM marvels
+WHERE popularity < 8 AND strength <75;
+
+SELECT name, durability
+FROM marvels
+WHERE intelligence >= 100 OR durability <= 85;
+
+SELECT name, fighting_skills
+FROM marvels;
+
+SELECT name, AVG(Fighting_Skills) AS Skills
+FROM marvels
+GROUP BY name
+HAVING Skills < 85;
+
+SELECT name, SUM(intelligence) AS Smarts
+FROM marvels
+GROUP BY name
+HAVING Smarts >= 150;
