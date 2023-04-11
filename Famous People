@@ -1,0 +1,66 @@
+CREATE TABLE movie_stars (id integer primary key AUTOINCREMENT, first_name TEXT, last_name TEXT, age integer, spouse TEXT, children integer, location TEXT);
+
+INSERT INTO movie_stars (first_name, last_name, age, spouse, children, location) VALUES ("Halle" , "Berry" , 56, "unmarried" , 1, "Malibu");
+INSERT INTO movie_stars (first_name, last_name, age, spouse, children, location) VALUES ("Zendaya" , "Colemen" , 26, "unmarried" , 0, "Los Angeles");
+INSERT INTO movie_stars (first_name, last_name, age, spouse, children, location) VALUES ("Will" , "Smith" , 54, "Jada Pinkett" , 3, "NULL");
+INSERT INTO movie_stars (first_name, last_name, age, spouse, children, location) VALUES ("Ben" , "Affleck" , 50, "Jennifer Lopez" , 3, "NULL");
+INSERT INTO movie_stars (first_name, last_name, age, spouse, children, location) VALUES ("Samuel L." , "Jackson" , 74, "LaTanya Jackson" , 1, "Beverly Hills");
+INSERT INTO movie_stars (first_name, last_name, age, spouse, children, location) VALUES ("Sandra", "Bullock" , 58, "unmarried" , 2, "New Orleans");
+
+SELECT *
+FROM movie_stars;
+
+CREATE TABLE movies (id integer primary key AUTOINCREMENT, person_id integer, name TEXT, rating integer);
+INSERT INTO movies (person_id, name, rating) VALUES (1, "Monster's Ball" , 85);
+INSERT INTO movies (person_id, name, rating) VALUES (1, "Gothika" , 14);
+INSERT INTO movies (person_id, name, rating) VALUES (2, "Euphoria" , 88);
+INSERT INTO movies (person_id, name, rating) VALUES (2, "Malcolm & Marie" , 57);
+INSERT INTO movies (person_id, name, rating) VALUES (3, "Bad Boys" , 43);
+INSERT INTO movies (person_id, name, rating) VALUES (3, "Men in Black" , 91);
+INSERT INTO movies (person_id, name, rating) VALUES (4, "Gone Girl" , 88);
+INSERT INTO movies (person_id, name, rating) VALUES (4, "Armageddon" , 38);
+INSERT INTO movies (person_id, name, rating) VALUES (5, "A Time to Kill" , 68);
+INSERT INTO movies (person_id, name, rating) VALUES (5, "Pulp Fiction" , 92);
+INSERT INTO movies (person_id, name, rating) VALUES (6, "The Blind Side" , 66);
+INSERT INTO movies (person_id, name, rating) VALUES (6, "Miss Congeniality" , 41);
+
+SELECT *
+FROM movies;
+
+SELECT first_name, last_name, movies.name, rating
+FROM movie_stars
+JOIN movies
+ON movie_stars.id = movies.person_id
+WHERE rating < 75
+ORDER BY rating;
+
+SELECT first_name, last_name, SUM(rating) AS total_rating
+FROM movie_stars
+LEFT OUTER JOIN movies
+ON movie_stars.id = movies.person_id
+GROUP BY first_name 
+ORDER BY rating;
+
+SELECT first_name, last_name, age,
+CASE
+WHEN age <= 26 THEN 'Young Star'
+WHEN age <= 50 THEN 'Seasoned Star'
+ELSE 'Advanced Star'
+END AS Skill_Level
+FROM movie_stars
+GROUP BY last_name;
+
+SELECT movie_stars.first_name, movie_stars.last_name, Stars.spouse AS marital_status
+FROM movie_stars
+JOIN movie_stars Stars
+ON movie_stars.id = Stars.id;
+
+SELECT name, SUM(rating) AS sum_rating
+FROM movies
+GROUP BY name
+HAVING sum_rating > 50;
+
+SELECT name, AVG(rating) AS avg_rating
+FROM movies
+GROUP BY name
+HAVING avg_rating < 45;
