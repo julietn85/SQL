@@ -1,0 +1,28 @@
+CREATE TABLE kitchen_pantry (id integer primary key AUTOINCREMENT, food TEXT, color TEXT, price integer, taste integer);
+
+INSERT INTO kitchen_pantry (food, color, price, taste) VALUES ("apple" , "red" , 5.75, 7);
+INSERT INTO kitchen_pantry (food, color, price, taste) VALUES ("banana", "yellow" , 3.50, 5);
+INSERT INTO kitchen_pantry (food, color, price, taste) VALUES ("blueberries" , "blue" , 5.50, 7);
+INSERT INTO kitchen_pantry (food, color, price, taste) VALUES ("peaches" , "orange" , 4.25, 7);
+INSERT INTO kitchen_pantry (food, color, price, taste) VALUES ("blackberries" , "blackish" , 6.75, 8);
+
+SELECT *
+FROM kitchen_pantry;
+
+UPDATE kitchen_pantry
+SET color = "purple"
+WHERE id = 5;
+
+SELECT *
+FROM kitchen_pantry;
+
+INSERT INTO kitchen_pantry (food, color, price, taste) VALUES ("pears" , "green" , 2.99, 3);
+
+SELECT *
+FROM kitchen_pantry;
+
+DELETE FROM kitchen_pantry
+WHERE id = 2;
+
+SELECT *
+FROM kitchen_pantry
